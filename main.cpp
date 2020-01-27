@@ -14,7 +14,7 @@ float Y[6][3] = {
     {-1,0,0},   //ideal X axis down
 };
 
-float raw_data[6][4] = {
+float w[6][4] = {
     {0.03, -0.02, 0.96, 1.0},   // measured Z axis up
     {0.03, 0.02, -1.04, 1.0},   // measured Z axis down
     {0.03, 0.97, 0.01, 1.0},    // measured Y axis up
@@ -154,11 +154,11 @@ bool invertMatrix(const float m[16], float invOut[16])
 
 int main()
 {
-    float raw_data_T[4][6];
+    float w_T[4][6];
     for(int row=0; row < 6; row++){
         for(int col=0; col < 4; col++){
-            raw_data_T[col][row]=0;
-            raw_data_T[col][row]=raw_data[row][col];
+            w_T[col][row]=0;
+            w_T[col][row]=w[row][col];
         }
     }
 
@@ -167,7 +167,7 @@ int main()
         for(int c = 0; c < 4; ++c){
             dot_prod[r][c] = 0.0;
             for(int k = 0; k < 6; ++k){
-                dot_prod[r][c] += raw_data_T[r][k] * raw_data[k][c];
+                dot_prod[r][c] += w_T[r][k] * w[k][c];
             }
         }
 
@@ -198,7 +198,7 @@ int main()
         for(int c = 0; c < 6; ++c){
             dot_prod2[r][c] = 0.0;
             for(int k = 0; k < 4; ++k){
-                dot_prod2[r][c] += inverted_reshaped[r][k] * raw_data_T[k][c];
+                dot_prod2[r][c] += inverted_reshaped[r][k] * w_T[k][c];
             }
         }
 
