@@ -6,21 +6,21 @@ using namespace std;
 // Read this paper : https://www.st.com/content/ccc/resource/technical/document/application_note/a0/f0/a0/62/3b/69/47/66/DM00119044.pdf/files/DM00119044.pdf/jcr:content/translations/en.DM00119044.pdf
 
 float Y[6][3] = {
-    {0,0,1},
-    {0,0,-1},
-    {0,1,0},
-    {0,-1,0},
-    {1,0,0},
-    {-1,0,0},
+    {0,0,1},    //ideal Z axis up
+    {0,0,-1},   //ideal Z axis down
+    {0,1,0},    //ideal Y axis up
+    {0,-1,0},   //ideal Y axis down
+    {1,0,0},    //ideal X axis up
+    {-1,0,0},   //ideal X axis down
 };
 
 float raw_data[6][4] = {
-    {0.03, -0.02, 0.96, 1.0},
-    {0.03, 0.02, -1.04, 1.0},
-    {0.03, 0.97, 0.01, 1.0},
-    {-0.03, -1.03, -0.01, 1.0},
-    {0.99, -0.03, -0., 1.0},
-    {-1.01, -0.03, 0., 1.0}
+    {0.03, -0.02, 0.96, 1.0},   // measured Z axis up
+    {0.03, 0.02, -1.04, 1.0},   // measured Z axis down
+    {0.03, 0.97, 0.01, 1.0},    // measured Y axis up
+    {-0.03, -1.03, -0.01, 1.0}, // measured Y axis down
+    {0.99, -0.03, -0., 1.0},    // measured X axis up
+    {-1.01, -0.03, 0., 1.0}     // measured X axis down
 };
 
 bool invertMatrix(const float m[16], float invOut[16])
